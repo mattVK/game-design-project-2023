@@ -20,8 +20,9 @@ public class Movement : MonoBehaviour
 
     //basic 2D movement variables
     [SerializeField] private Rigidbody2D playerRb;
-    [SerializeField] private float speed = 50;
-
+    [SerializeField] private float speed = 50f;
+    [SerializeField] private float maxSpeed = 75f;
+ 
     //knockback movement variables
     [SerializeField] private float knockbackSpeed;
 
@@ -33,7 +34,7 @@ public class Movement : MonoBehaviour
     Boolean isPlayerShooting()
     {
         
-        return Input.GetMouseButtonDown(0);
+        return Input.GetMouseButton(0);
     }
 
 
@@ -42,6 +43,18 @@ public class Movement : MonoBehaviour
     {
         Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         return Camera.main.ScreenToWorldPoint(screenPosition);
+    }
+
+    //player knockback
+    Vector2 knockbackAngle()
+    {
+        return -1 * playerShotPosition().normalized;
+    }
+
+    //is player moving
+    Boolean inputMovingHorizontal()
+    {
+        return Input.GetAxis("Horizontal") != 0;
     }
     
     // Start is called before the first frame update
@@ -53,7 +66,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerRb.velocity = new Vector2(Input.GetAxis("Horizontal"), 0) * speed ;   
+        if (inputMovingHorizontal())
+        {
+            playerRb.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0), ForceMode2D.Impulse);
+            playerRb.velocity = Vector3.ClampMagnitude(playerRb.velocity, maxSpeed);
+        }
         
     }
 }
+

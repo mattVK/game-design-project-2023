@@ -285,7 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 132665667}
-  speed: 50
+  speed: 10
+  maxSpeed: 20
   knockbackSpeed: 0
 --- !u!1 &519420028
 GameObject:

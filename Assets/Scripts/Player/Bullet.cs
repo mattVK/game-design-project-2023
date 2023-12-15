@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float lifespan = 10f;
+    [SerializeField] private float lifespan = 1f;
     
     
 
@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         lifespan -= Time.deltaTime;
+        
         if (lifespan <= 0f)
         {
             Destroy(gameObject);

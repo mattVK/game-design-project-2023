@@ -26,21 +26,25 @@ public class Movement : MonoBehaviour
     [SerializeField] private float flightGravity = 4f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float fallDrag = 20f;
-    [SerializeField] private int maxJumpCount = 1;
-    [SerializeField] private int jumpCount = 1;
     [SerializeField] private LayerMask groundLayerMask;
     
 
- 
+
+
     //knockback movement variables
     [SerializeField] private float knockbackSpeed = 10f;
 
     //shooting variables
     [SerializeField] private int bulletCountMax = 6;
     [SerializeField] private int bulletCount = 6;
-    [SerializeField] private int bulletUsed = 1;
+    [SerializeField] private float bulletBurstSpeed = 0.2f;
+    [SerializeField] private float bulletSpread = 65f;
+
+
     [SerializeField] private float reloadTime = 0.5f;
     private Boolean isReloading = false;
+
+
     [SerializeField] private GameObject bulletPrefab;
     private GameObject bullet;
     private float bulletSpeed = 30f;
@@ -71,12 +75,39 @@ public class Movement : MonoBehaviour
     }
 
     //bullet instantiation
-    void shootBullet()
+    void shootBulletLeftClick()
     {
         bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Vector2 shootDirection = playerShotPosition() - playerRb.position;
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection.normalized * bulletSpeed;
         
+    }
+
+    IEnumerator delayBetweenBulletBurst()
+    {
+        for (int i = bulletCount; i > 0; i--)
+        {
+            
+            bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Vector2 shootDirection = playerShotPosition() - (Vector2)transform.position;
+
+            Quaternion shootRotation = Quaternion.Euler(0,0, Mathf.Atan2(shootDirection.y, shootDirection.x));
+            float randomAngle = UnityEngine.Random.Range(-bulletSpread, bulletSpread);
+            shootRotation *= Quaternion.Euler(0, 0, randomAngle);
+
+            shootDirection = shootRotation * shootDirection;
+
+
+
+  
+            bullet.GetComponent<Rigidbody2D>().velocity = shootDirection.normalized * bulletSpeed;
+            yield return new WaitForSeconds(bulletBurstSpeed);
+        }
+    }
+
+    void shootBulletRightClick()
+    {
+        StartCoroutine(delayBetweenBulletBurst());
     }
 
     //if bullet is real
@@ -158,7 +189,7 @@ public class Movement : MonoBehaviour
     //player is jump
     Boolean playerJump()
     {
-        return Input.GetKeyDown(KeyCode.Space);
+        return Input.GetButtonDown("Jump");
     }
 
     //player jump behavior
@@ -173,13 +204,15 @@ public class Movement : MonoBehaviour
 
         //We raycast down 1 pixel from this position to check for a collider
         Vector2 positionToCheck = playerRb.position;
-        hits = Physics2D.RaycastAll(positionToCheck, new Vector2(0, -1), 0.6f, groundLayerMask);
-        //Debug.DrawRay(positionToCheck, Vector2.down * 0.6f);
+        hits = Physics2D.RaycastAll(positionToCheck, Vector2.down, 0.6f, groundLayerMask);
+        Debug.DrawRay(positionToCheck, Vector2.down * 0.6f);
         //Debug.Log(hits.Length);
-        
+
 
         //if a collider was hit, we are grounded
-        return hits.Length > 0;
+        bool grounded = hits.Length > 0;
+
+        return grounded;
 
     }
     
@@ -195,30 +228,30 @@ public class Movement : MonoBehaviour
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
         
         playerWASDMovement();
+
         if (isPlayerShootingLeftMB() && bulletCount > 0 && !isReloading)
         {
             bulletCount--;
-            shootBullet();
+            shootBulletLeftClick();
         }
             else if (isPlayerShootingRightMB() && bulletCount > 0 && !isReloading)
         {
-            bulletCount -= bulletUsed;
-            shootBullet();
+            shootBulletRightClick();
+            bulletCount = 0;
+            
             playerKnockbacked();
         }
+
         if (reloadPressed() && !isReloading && bulletCount != bulletCountMax)
         {
             StartCoroutine(Reload());
         }
-        if (playerJump() && jumpCount > 0)
+
+       if(isGrounded() && playerJump())
         {
-            jumpCount--;
             playerJumpMovement();
         }
-            else if (isGrounded())
-        {
-            jumpCount = maxJumpCount;
-        }
+
         
         
     }

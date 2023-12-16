@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,9 @@ using UnityEngine;
 public class EnemyTestSimple : MonoBehaviour
 {
 
-    [SerializeField] BoxCollider2D boxCollider;
-    [SerializeField] SpriteRenderer enemyGO;
+
+    [SerializeField] private ColoredFlash ColoredFlash;
+    [SerializeField] private Damage playerDamaged;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +26,13 @@ public class EnemyTestSimple : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("HIT");
+            playerDamaged.OnEnemyHitKnockback(transform);
+            playerDamaged.TakeDamage();
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
             Debug.Log("HIT WITH BULLET");
+            ColoredFlash.Flash(Color.red);
            
         }
     }

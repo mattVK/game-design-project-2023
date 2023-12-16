@@ -136,6 +136,8 @@ GameObject:
   - component: {fileID: 132665667}
   - component: {fileID: 132665666}
   - component: {fileID: 132665670}
+  - component: {fileID: 132665671}
+  - component: {fileID: 132665672}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -300,6 +302,42 @@ MonoBehaviour:
   bulletSpread: 30
   reloadTime: 1.2
   bulletPrefab: {fileID: 836786707979413323, guid: 2589b8f91a0bfc54d98642e6d5f4996d, type: 3}
+--- !u!114 &132665671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132665665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95973090646952143a607b87f564aa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f6942f55dd86ccb47b9556065fd84fa3, type: 2}
+  duration: 0.5
+--- !u!114 &132665672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132665665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e19679c120a3f41bd75c90478b3bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  currentHealth: 6
+  ColoredFlash: {fileID: 132665671}
+  playerCollider: {fileID: 132665666}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  invincibilityTime: 2
+  rb: {fileID: 132665667}
+  knockbackStrength: 40
 --- !u!1 &413541309
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +931,8 @@ GameObject:
   - component: {fileID: 1738251263}
   - component: {fileID: 1738251262}
   - component: {fileID: 1738251261}
-  m_Layer: 0
+  - component: {fileID: 1738251264}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -927,8 +966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9bce2b5f75d874aaf0616cd662aa16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 1738251262}
-  enemyGO: {fileID: 1738251263}
+  ColoredFlash: {fileID: 1738251264}
+  playerDamaged: {fileID: 132665672}
 --- !u!61 &1738251262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1026,6 +1065,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1738251264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738251259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95973090646952143a607b87f564aa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f6942f55dd86ccb47b9556065fd84fa3, type: 2}
+  duration: 0.125
 --- !u!1 &1903381276
 GameObject:
   m_ObjectHideFlags: 0

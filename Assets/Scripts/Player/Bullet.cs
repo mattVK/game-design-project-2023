@@ -6,13 +6,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float lifespan = 1f;
-    
+    [SerializeField] private TrailRenderer trailRenderer;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,5 +26,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
+   
+
+private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Level"))
+        {
+            trailRenderer.emitting = false;
+            Destroy(gameObject);
+            
+            
+        }
+    }
     
+
 }

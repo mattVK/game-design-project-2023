@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float flightGravity = 4f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float fallDrag = 20f;
+    private bool knockbackJump = false;
     [SerializeField] private LayerMask groundLayerMask;
     
 
@@ -83,6 +84,8 @@ public class Movement : MonoBehaviour
         
     }
 
+
+    //bullet bursting when right click
     IEnumerator delayBetweenBulletBurst()
     {
         for (int i = bulletCount; i > 0; i--)
@@ -105,6 +108,8 @@ public class Movement : MonoBehaviour
         }
     }
 
+    
+    //right click inputter
     void shootBulletRightClick()
     {
         StartCoroutine(delayBetweenBulletBurst());
@@ -173,6 +178,7 @@ public class Movement : MonoBehaviour
     //player is moving, handle movement and also limits
     void playerWASDMovement()
     {
+        Debug.Log(Input.GetAxisRaw("Horizontal"));
         playerRb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * speed, 0), ForceMode2D.Impulse);
         if (Math.Abs(playerRb.velocity.x) > maxSpeed)
         {
@@ -238,6 +244,7 @@ public class Movement : MonoBehaviour
         {
             shootBulletRightClick();
             bulletCount = 0;
+            knockbackJump = true;
             
             playerKnockbacked();
         }
@@ -246,11 +253,21 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
+        else if (!isReloading && bulletCount == 0)
+        {
+            StartCoroutine(Reload());
+        }
 
        if(isGrounded() && playerJump())
-        {
+       {
             playerJumpMovement();
-        }
+            knockbackJump = false;
+       }
+       else if (knockbackJump && playerJump() && !isGrounded())
+       {
+            playerJumpMovement();
+            knockbackJump = !knockbackJump;
+       }
 
         
         

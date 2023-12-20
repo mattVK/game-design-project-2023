@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float lifespan = 1f;
     [SerializeField] private TrailRenderer trailRenderer;
-    
+    [SerializeField] private GameObject bulletBody;
+    public Vector3 lastPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +29,14 @@ public class Bullet : MonoBehaviour
 
    
 
-private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
        
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Level"))
         {
             trailRenderer.emitting = false;
-            Destroy(gameObject);
-            
-            
+            lastPosition = bulletBody.transform.position;
+            Destroy(bulletBody, 0.01f); 
         }
     }
     

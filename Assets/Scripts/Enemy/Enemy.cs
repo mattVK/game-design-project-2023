@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Damage playerDamaged;
     [SerializeField] private Rigidbody2D enemyRb;
     [SerializeField] private float enemyBulletKnockbackForce;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     {
 
     }
-
+        
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -31,10 +32,6 @@ public class Enemy : MonoBehaviour
             playerDamaged.OnEnemyHitKnockback(transform);
             playerDamaged.TakeDamage();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Debug.Log("HIT WITH BULLET");
@@ -44,6 +41,8 @@ public class Enemy : MonoBehaviour
             enemyRb.AddForce(shootKnockback * enemyBulletKnockbackForce, ForceMode2D.Impulse);
         }
     }
+
+    
 
 }    
 

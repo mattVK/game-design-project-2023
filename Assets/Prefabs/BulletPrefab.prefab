@@ -136,8 +136,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1760412465
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Time: 5
   m_PreviewTimeScale: 1
@@ -346,3 +346,4 @@ MonoBehaviour:
   lifespan: 10
   trailRenderer: {fileID: 8739298548223386811}
   bulletBody: {fileID: 836786707979413323}
+  lastPosition: {x: 0, y: 0, z: 0}

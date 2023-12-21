@@ -35,8 +35,13 @@ private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Level"))
         {
             trailRenderer.emitting = false;
-            lastPosition = bulletBody.transform.position;
-            Destroy(bulletBody, 0.01f); 
+            
+            Destroy(bulletBody, 0.05f); 
+        }
+        if (collision.gameObject.CompareTag("Level"))
+        {
+            trailRenderer.emitting = false;
+            Destroy(bulletBody);
         }
     }
     

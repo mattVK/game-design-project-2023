@@ -178,11 +178,10 @@ public class Movement : MonoBehaviour
     //player is moving, handle movement and also limits
     void playerWASDMovement()
     {
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
         playerRb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * speed, 0), ForceMode2D.Impulse);
-        if (Math.Abs(playerRb.velocity.x) > maxSpeed)
+        if (Math.Abs(playerRb.velocity.x) > maxSpeed && Input.GetAxisRaw("Horizontal") != 0)
         {
-            playerRb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * speed * -1, 0), ForceMode2D.Impulse);
+            playerRb.AddForce(new Vector2(-Input.GetAxisRaw("Horizontal") * speed, 0), ForceMode2D.Impulse);
         }
     }
 

@@ -9,22 +9,40 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private ColoredFlash ColoredFlash;
     [SerializeField] private Damage playerDamaged;
+    [SerializeField] private float currHealth, maxHealth = 3f;
     [SerializeField] private float enemyBulletKnockbackForce;
-    [SerializeField] private Rigidbody2D enemyRb;
     [SerializeField] float moveSpeed = 1f;
-    [SerializeField] private float currHealth;
+    [SerializeField] private Rigidbody2D enemyRb;
+    Transform target;
+    Vector2 moveDirection;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
+        currHealth = maxHealth;
+
+        target = GameObject.Find("Player").transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyRb.velocity = new Vector2(moveSpeed, 0f);
+
+        if(target)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            enemyRb.rotation = angle;
+            enemyRb.velocity = new Vector2(direction.x * moveSpeed, 0f);
+        }
     }
+
+
         
     private void OnCollisionEnter2D(Collision2D collision)
     {

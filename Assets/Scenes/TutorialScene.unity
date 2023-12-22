@@ -6249,8 +6249,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColoredFlash: {fileID: 1738251264}
   playerDamaged: {fileID: 132665672}
-  enemyRb: {fileID: 1738251265}
+  currHealth: 0
+  maxHealth: 3
   enemyBulletKnockbackForce: 1
+  moveSpeed: 2
+  enemyRb: {fileID: 1738251265}
 --- !u!61 &1738251262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6377,7 +6380,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

@@ -44,6 +44,8 @@ private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
             Destroy(bulletBody);
         }
     }
-    
+
+
+
 
 }

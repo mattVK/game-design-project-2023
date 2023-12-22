@@ -9,19 +9,21 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private ColoredFlash ColoredFlash;
     [SerializeField] private Damage playerDamaged;
-    [SerializeField] private Rigidbody2D enemyRb;
     [SerializeField] private float enemyBulletKnockbackForce;
-    
+    [SerializeField] private Rigidbody2D enemyRb;
+    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] private float currHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        enemyRb.velocity = new Vector2(moveSpeed, 0f);
     }
         
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,6 +41,18 @@ public class Enemy : MonoBehaviour
             Vector2 shootKnockback = (transform.position - collision.gameObject.transform.position).normalized;
             Debug.DrawLine(enemyRb.position, shootKnockback, Color.green);
             enemyRb.AddForce(shootKnockback * enemyBulletKnockbackForce, ForceMode2D.Impulse);
+
+            TakeDamage(1);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currHealth -= damage;
+            if(currHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

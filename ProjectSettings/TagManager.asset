@@ -50,6 +50,15 @@ TagManager:
   - name: Ground Layer
     uniqueID: 1364393
     locked: 0
+  - name: Player Back Wheel
+    uniqueID: 2868857223
+    locked: 0
   - name: Player
     uniqueID: 1760412465
+    locked: 0
+  - name: Player Front Wheel
+    uniqueID: 3945629407
+    locked: 0
+  - name: UI
+    uniqueID: 3858962043
     locked: 0

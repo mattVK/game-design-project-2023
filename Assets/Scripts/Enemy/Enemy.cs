@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float enemyBulletKnockbackForce;
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] private Rigidbody2D enemyRb;
-    Transform target;
+    [SerializeField] private Transform targetPlayer;
+    
     Vector2 moveDirection;
     
     
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody2D>();
         currHealth = maxHealth;
 
-        target = GameObject.Find("Player").transform;
+
 
     }
 
@@ -33,9 +34,9 @@ public class Enemy : MonoBehaviour
     {
         enemyRb.velocity = new Vector2(moveSpeed, 0f);
 
-        if(target)
+        if(targetPlayer)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
+            Vector3 direction = (targetPlayer.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             enemyRb.rotation = angle;
             enemyRb.velocity = new Vector2(direction.x * moveSpeed, 0f);

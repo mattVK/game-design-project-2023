@@ -8,12 +8,16 @@ public class Damage : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
-    [SerializeField] private ColoredFlash ColoredFlash;
+    [SerializeField] private ColoredFlash coloredFlashBody;
+    [SerializeField] private ColoredFlash coloredFlashBackWheel;
+    [SerializeField] private ColoredFlash coloredFlashFrontWheel;
+
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask enemyLayerMask;
     [SerializeField] private float invincibilityTime;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float knockbackStrength;
+    [SerializeField] private HealthBarController healthBarController;
     private LayerMask originalLayers;
 
 
@@ -51,12 +55,20 @@ public class Damage : MonoBehaviour
         
     }
 
+    public int GetCurrHealth()
+    {
+        return currentHealth;
+    }
+
     public void TakeDamage()
     {
-        ColoredFlash.Flash(Color.red);
+        coloredFlashBody.Flash(Color.red);
+        coloredFlashFrontWheel.Flash(Color.red);
+        coloredFlashBackWheel.Flash(Color.red);
 
 
         StartCoroutine(IndicateInvincibility());
         currentHealth--;
+        healthBarController.UpdateHealthBar(currentHealth);
     }
 }

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 27966382}
   - component: {fileID: 27966381}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6023,38 +6023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1374325108
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1374325109}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1374325109
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374325108}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2484123, y: -1.1216135, z: -0.0033866032}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1738251260}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660212361
 GameObject:
   m_ObjectHideFlags: 0
@@ -6156,12 +6124,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738251259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.47, y: -2.39, z: 0.0033866032}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.2215877, y: -3.5116136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1374325109}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1738251261
 MonoBehaviour:
@@ -6320,7 +6288,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1844369292
 GameObject:
   m_ObjectHideFlags: 0
@@ -6633,6 +6601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a04e01ce7cf73478f5e42455b8f62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePlayer: {fileID: 2058473919}
   playerRb: {fileID: 2058473916}
   speed: 10
   maxSpeed: 20
@@ -6642,7 +6611,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  knockbackSpeed: 30
+  knockbackSpeed: 50
   bulletCountMax: 6
   bulletCount: 6
   bulletBurstSpeed: 0.01
@@ -6674,6 +6643,9 @@ MonoBehaviour:
   rb: {fileID: 2058473916}
   knockbackStrength: 20
   healthBarController: {fileID: 472946975}
+  isKnockbacked: 0
+  knockbackTimer: 0
+  knockbackDuration: 0.2
 --- !u!114 &2058473920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6842,7 +6814,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1660212363}
-  - {fileID: 1374325109}
+  - {fileID: 1738251260}
   - {fileID: 191654860}
   - {fileID: 2058473915}
   - {fileID: 2101457979}

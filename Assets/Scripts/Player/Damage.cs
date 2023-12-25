@@ -8,6 +8,7 @@ public class Damage : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+
     [SerializeField] private ColoredFlash coloredFlashBody;
     [SerializeField] private ColoredFlash coloredFlashBackWheel;
     [SerializeField] private ColoredFlash coloredFlashFrontWheel;
@@ -19,6 +20,10 @@ public class Damage : MonoBehaviour
     [SerializeField] private float knockbackStrength;
     [SerializeField] private HealthBarController healthBarController;
     private LayerMask originalLayers;
+
+    public bool isKnockbacked;
+    [SerializeField] private float knockbackTimer;
+    [SerializeField] private float knockbackDuration;
 
 
 
@@ -36,6 +41,15 @@ public class Damage : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (isKnockbacked)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0)
+            {
+                isKnockbacked = false;
+                // Optionally, you can reset the velocity or perform other actions when the knockback ends.
+            }
+        }
     }
 
     IEnumerator IndicateInvincibility()
@@ -52,7 +66,10 @@ public class Damage : MonoBehaviour
     { 
         Vector2 knockbackDirection = enemyTransform.position - transform.position;
         rb.AddForce(-knockbackDirection.normalized * knockbackStrength, ForceMode2D.Impulse);
-        
+
+        isKnockbacked = true;
+        knockbackTimer = knockbackDuration;
+
     }
 
     public int GetCurrHealth()

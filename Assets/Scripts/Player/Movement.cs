@@ -15,11 +15,15 @@ public class Movement : MonoBehaviour
         
          Gizmos.color = Color.red;
          Gizmos.DrawLine(playerRb.position, transform.position + new Vector3(knockbackAngle().x, knockbackAngle().y, 0));
+
+        
         
 
     }
 
     //basic 2D movement variables
+    [SerializeField] private Damage damagePlayer;
+    private bool isKnockbacked;
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private float speed = 50f;
     [SerializeField] private float maxSpeed = 75f;
@@ -28,6 +32,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float fallDrag = 20f;
     private bool knockbackJump = false;
     [SerializeField] private LayerMask groundLayerMask;
+    private Collider2D playerCollider;
     
 
 
@@ -40,12 +45,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private int bulletCount = 6;
     [SerializeField] private float bulletBurstSpeed = 0.2f;
     [SerializeField] private float bulletSpread = 65f;
-
-
     [SerializeField] private float reloadTime = 0.5f;
     private Boolean isReloading = false;
-
-
     [SerializeField] private GameObject bulletPrefab;
     private GameObject bullet;
     private float bulletSpeed = 30f;
@@ -205,34 +206,30 @@ public class Movement : MonoBehaviour
 
     Boolean isGrounded()
     {
-        RaycastHit2D[] hits;
 
-        //We raycast down 1 pixel from this position to check for a collider
-        Vector2 positionToCheck = playerRb.position;
-        hits = Physics2D.RaycastAll(positionToCheck, Vector2.down, 0.6f, groundLayerMask);
-        Debug.DrawRay(positionToCheck, Vector2.down * 0.6f);
-        //Debug.Log(hits.Length);
-
-
-        //if a collider was hit, we are grounded
-        bool grounded = hits.Length > 0;
-
-        return grounded;
+        bool hitDetection = Physics2D.BoxCast(playerCollider.bounds.center, transform.localScale, 0, Vector2.down, 0.1f, groundLayerMask);
+        Debug.Log(hitDetection);
+        return hitDetection;
 
     }
     
     // Start is called before the first frame update
     void Start()
     {
-               
+        playerCollider = GetComponent<Collider2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        isKnockbacked = damagePlayer.isKnockbacked;
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
+        if (Input.GetAxisRaw("Horizontal") != 0 && !isKnockbacked)
+        {
+            playerWASDMovement();
+        }
         
-        playerWASDMovement();
 
         if (isPlayerShootingLeftMB() && bulletCount > 0 && !isReloading)
         {

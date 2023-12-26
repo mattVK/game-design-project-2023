@@ -24,7 +24,6 @@ public class ParallaxController : MonoBehaviour
 
         int backCount = transform.childCount;
         mat = new Material[backCount];
-        backspeed = new float[backCount];
         backgrounds = new GameObject[backCount];
 
         for (int i = 0; i < backCount; i++)
@@ -39,7 +38,7 @@ public class ParallaxController : MonoBehaviour
         {
             for (int i = 0; i < backCount; i++)
             {
-                if((backgrounds[i].transform.position.z - cam.position.z) > farthestBack)
+                if((backgrounds[i].transform.position.z - cam.position.z)>farthestBack)
                 {
                     farthestBack = backgrounds[i].transform.position.z - cam.position.z;
                 }

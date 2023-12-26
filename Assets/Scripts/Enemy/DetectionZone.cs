@@ -9,7 +9,9 @@ public class DetectionZone : MonoBehaviour
 
     private void Awake()
     {
+        
         col = GetComponent<Collider2D>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

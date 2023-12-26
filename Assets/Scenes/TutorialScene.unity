@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 180194900}
   - component: {fileID: 180194901}
   - component: {fileID: 180194902}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: bodi
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6604,8 +6604,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
-  attackZone: {fileID: 0}
+  attackZone: {fileID: 1831732328}
   _hasTarget: 0
+--- !u!114 &1831732328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7658756760876574964, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+  m_PrefabInstance: {fileID: 2449514332595218340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a522962f5f2df4f85050a8b321b650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1844369292
 GameObject:
   m_ObjectHideFlags: 0
@@ -6685,7 +6696,7 @@ GameObject:
   - component: {fileID: 1890015724}
   - component: {fileID: 1890015725}
   - component: {fileID: 1890015726}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: frontwilMov_0
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6788,7 +6799,7 @@ GameObject:
   - component: {fileID: 2058473916}
   - component: {fileID: 2058473919}
   - component: {fileID: 2058473920}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PlayerSprited
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6859,7 +6870,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2058473917
 BoxCollider2D:
@@ -6986,7 +6997,7 @@ GameObject:
   - component: {fileID: 2086545096}
   - component: {fileID: 2086545097}
   - component: {fileID: 2086545098}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: bekwilMov_0
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7133,9 +7144,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 304507313576490034, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 771386100529660704, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+      propertyPath: wallDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 771386100529660704, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
       propertyPath: castFilter.useLayerMask
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 771386100529660704, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+      propertyPath: castFilter.layerMask.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3669777169419589997, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
       propertyPath: m_Name
@@ -7188,6 +7211,14 @@ PrefabInstance:
     - target: {fileID: 4528744071212120325, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528744071212120325, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028585559416867220, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8224346561042786767, guid: 13e0f18ae5b9e69409e5c474d5f5a9a3, type: 3}
       propertyPath: m_Constraints

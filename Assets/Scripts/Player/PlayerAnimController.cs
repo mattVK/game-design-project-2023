@@ -62,7 +62,7 @@ public class PlayerAnimController : MonoBehaviour
         if (bodyTransform.rotation.eulerAngles.z > 90f && bodyTransform.rotation.eulerAngles.z < 270f)
         {
             bodySprite.flipY = true;
-            Debug.Log("TEST");
+            
         }
         else
         {

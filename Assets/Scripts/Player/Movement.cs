@@ -132,7 +132,8 @@ public class Movement : MonoBehaviour
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x);
         Vector2 shootingDirection = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-   
+
+       
         return -shootingDirection;
         
     }
@@ -208,7 +209,7 @@ public class Movement : MonoBehaviour
     {
 
         bool hitDetection = Physics2D.BoxCast(playerCollider.bounds.center, transform.localScale, 0, Vector2.down, 0.1f, groundLayerMask);
-        Debug.Log(hitDetection);
+        
         return hitDetection;
 
     }

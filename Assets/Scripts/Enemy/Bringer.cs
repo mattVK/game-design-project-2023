@@ -14,6 +14,9 @@ public class Bringer : MonoBehaviour
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
+    SpriteRenderer spriteRenderer;
+  
+
 
     public enum WalkableDirection { Right, Left}
 
@@ -56,6 +59,8 @@ public class Bringer : MonoBehaviour
    
     void Awake()
     {
+
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
@@ -63,6 +68,9 @@ public class Bringer : MonoBehaviour
 
     void Update()
     {
+        
+        
+       
         HasTarget = attackZone.detectedColliders.Count > 0;
     }
 
@@ -74,23 +82,31 @@ public class Bringer : MonoBehaviour
             FlipDirection();
         }
         rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+        
     }
 
     private void FlipDirection()
     {
         if(WalkDirection == WalkableDirection.Right)
         {
-            WalkDirection = WalkableDirection.Right;
+            WalkDirection = WalkableDirection.Left;
+            spriteRenderer.flipX = false;
+            
+
             
         } else if (WalkDirection == WalkableDirection.Left)
         {
-            WalkDirection = WalkableDirection.Left;
-            
+            WalkDirection = WalkableDirection.Right;
+            spriteRenderer.flipX = true;
+
         } else
         {
             Debug.LogError("Current walkable direction is not set to legal value of right or left");
         }
+
+
     }
+    
 
 
 

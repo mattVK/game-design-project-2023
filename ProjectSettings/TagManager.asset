@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - PlayerHitbox
   - EnemyHitbox
-  - 
+  - Climbing
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player Back Wheel
     uniqueID: 2868857223
+    locked: 0
+  - name: Climbing
+    uniqueID: 522515031
     locked: 0
   - name: Player
     uniqueID: 1760412465

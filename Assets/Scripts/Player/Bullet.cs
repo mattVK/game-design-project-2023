@@ -34,6 +34,8 @@ private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
        
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Level"))
         {
+
+            collision.GetComponent<Health>().TakeDamage(1);
             trailRenderer.emitting = false;
             
             Destroy(bulletBody, 0.05f); 

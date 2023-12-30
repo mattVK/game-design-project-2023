@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1760412465
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 627445948, guid: 8b46c0317666b3c45b5df04826b9763f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -172,6 +172,8 @@ MonoBehaviour:
   numberOfFlashes: 0
   components:
   - {fileID: 2157492254833975426}
+  hurtSound: {fileID: 8300000, guid: b610d8f208a522a4caacc6995062739c, type: 3}
+  deathSound: {fileID: 8300000, guid: 6f7e0dc500bef5e4787ded4ad456fde0, type: 3}
 --- !u!114 &2157492254833975426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +194,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackSound: {fileID: 0}
 --- !u!114 &6060645259690611657
 MonoBehaviour:
   m_ObjectHideFlags: 0

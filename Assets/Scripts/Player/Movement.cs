@@ -50,6 +50,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private GameObject bullet;
     private float bulletSpeed = 30f;
+    [SerializeField] private AudioClip bulletSound;
+
     
     
     
@@ -79,6 +81,7 @@ public class Movement : MonoBehaviour
     //bullet instantiation
     void shootBulletLeftClick()
     {
+        SoundManager.instance.PlaySound(bulletSound);
         bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Vector2 shootDirection = playerShotPosition() - playerRb.position;
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection.normalized * bulletSpeed;
@@ -113,6 +116,10 @@ public class Movement : MonoBehaviour
     //right click inputter
     void shootBulletRightClick()
     {
+       
+        SoundManager.instance.PlaySound(bulletSound);
+        SoundManager.instance.PlaySound(bulletSound);
+
         StartCoroutine(delayBetweenBulletBurst());
     }
 

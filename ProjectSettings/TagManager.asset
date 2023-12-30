@@ -16,8 +16,8 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
+  - Background
+  - Interactables
   - Climbing
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Ground Layer
     uniqueID: 1364393
+    locked: 0
+  - name: Interactables
+    uniqueID: 1188765005
     locked: 0
   - name: Player Back Wheel
     uniqueID: 2868857223

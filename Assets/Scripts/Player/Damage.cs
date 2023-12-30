@@ -24,7 +24,7 @@ public class Damage : MonoBehaviour
     public bool isKnockbacked;
     [SerializeField] private float knockbackTimer;
     [SerializeField] private float knockbackDuration;
-
+    [SerializeField] private AudioClip hurtSound;
 
 
 
@@ -79,6 +79,7 @@ public class Damage : MonoBehaviour
 
     public void TakeDamage()
     {
+        SoundManager.instance.PlaySound(hurtSound);
         coloredFlashBody.Flash(Color.red);
         coloredFlashFrontWheel.Flash(Color.red);
         coloredFlashBackWheel.Flash(Color.red);

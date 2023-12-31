@@ -40,6 +40,7 @@ public class Damage : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
         if (isKnockbacked)
         {

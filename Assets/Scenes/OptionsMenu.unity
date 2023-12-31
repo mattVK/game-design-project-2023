@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME TITLE
+  m_text: TERRA TANK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8581a117f8606145bedf8f821ad4081, type: 2}
   m_sharedMaterial: {fileID: -8147461570460564149, guid: d8581a117f8606145bedf8f821ad4081, type: 2}
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 201.1
-  m_fontSizeBase: 201.1
+  m_fontSize: 190
+  m_fontSizeBase: 190
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
